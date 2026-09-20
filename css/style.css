@@ -1,0 +1,515 @@
+body {
+  padding-top: 40px;
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+a, button {
+  transition:all 0.2s;
+  -webkit-transition:all 0.2s; }
+}
+
+h1 br {
+  display: none;
+}
+
+.pc-icon {
+  background: url('../assets/pc32sw.png') no-repeat 10px center;
+  padding-left: 50px;
+}
+
+.pc-icon:hover {
+  background-image: url('../assets/pc32.png');
+}
+
+#detector {
+  cursor: pointer;
+  margin: 0 auto;
+  position: relative;
+}
+
+#detector canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+#detector-core {
+   z-index: 0;
+}
+
+#detector-events {
+   z-index: 1;
+}
+
+#detector-info {
+  z-index: 10;
+  position: absolute;
+}
+
+.scrollable {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.research-icon {
+  float: left;
+  margin-right: 10px;
+}
+
+#achievements-container {
+  position: fixed; bottom: 0px; left: 0px;
+}
+
+#messages-container {
+  position: fixed; bottom: 0px; right: 0px;
+}
+
+#achievements-container .alert,
+#messages-container .alert {
+  margin-bottom: 10px; position: relative;
+}
+
+#achievements-container .alert-glyph,
+#messages-container .alert-glyph {
+  float:left; font-size: 20px; margin-right: 10px;
+}
+
+#achievements-container .alert-text,
+#messages-container .alert-text {
+  font-size: 14px;
+}
+
+#achievements-container .alert-text {
+  font-weight: bold;
+}
+
+#messages-container .btn {
+  float:right; font-weight: bold;
+}
+
+.status strong {
+  color: #666;
+}
+
+.update-value {
+  position: absolute;
+  right: 1em;
+  top: 1.42857em;
+  height: 1.42857em;
+}
+
+.update-plus {
+  color: green;
+  float: left;
+  right: 5px;
+  position: absolute;
+}
+
+.update-minus {
+  color: red;
+  float: left;
+  right: 5px;
+  position: absolute;
+}
+
+#labname {
+  border: 0px;
+  padding: 0 4px;
+  margin-top: 20px;
+  font-weight: 500;
+  line-height: 1;
+  width: 99%;
+}
+
+.panel {
+  margin-bottom: 0;
+}
+
+.media-list-no-margin {
+  margin-top: -15px;
+}
+
+.col-no-padding {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.tab-content {
+  border-left:1px solid #ddd;
+}
+
+.tab-pane.scrollable {
+  padding:15px;
+}
+
+
+[data-research-link].research-link-undiscovered {
+  color: #999;
+  cursor: default;
+  text-decoration: none;
+}
+
+.prevent-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+  display: none !important;
+}
+
+
+/** Annoying blink effect to get user's attention. */
+.blink {
+  animation: blinker 1.0s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+  -webkit-animation: blinker 1.0s cubic-bezier(.5, 0, 1, 1) infinite alternate;
+}
+
+@keyframes blinker {
+  from { opacity: 1; }
+  to { opacity: 0.25; }
+}
+
+@-webkit-keyframes blinker {
+  from { opacity: 1; }
+  to {
+    opacity: 0.25;
+    background: #f00;
+    border-color: #900;
+  }
+}
+
+/** Responsive **/
+
+/* On narrow portrait phones, stack the detector and the Research/HR/
+   Upgrades tabs full-width instead of the side-by-side landscape layout,
+   and let the whole page scroll naturally instead of clipping panels to
+   the viewport height. */
+@media screen and (orientation:portrait) and (max-width: 767px) {
+  #column-lab,
+  #column-tabs {
+    width: 100% !important;
+    float: none;
+  }
+
+  .scrollable {
+    height: auto !important;
+    overflow: visible;
+  }
+
+  #detector-holder {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #TabList > li > a {
+    padding: 15px 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  /* The dismissible notices are wide enough on a phone that pinning them
+     to the bottom-right corner overlaps other controls (e.g. the tabs).
+     Span the full width instead, like a typical mobile banner. */
+  #messages-container {
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #detector-holder {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+
+  .status {
+    font-size: 18px;
+  }
+
+  #labname {
+    font-size: 22px;
+  }
+
+  #detector-info {
+    top: 85px; right: 15px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .panel-stick,
+  .panel-stick .panel-heading,
+  .panel-stick .panel-body {
+    border-right: 0;
+  }
+
+  .status {
+    font-size: 20px;
+  }
+
+  #labname {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .status {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+  .col-md-3s {
+    width:20%;
+  }
+
+  .col-md-5s {
+    width:40%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  h4 {
+    font-size: 16px;
+  }
+
+  .col-no-padding-xs {
+    padding-right: 0;
+    padding-left: 0;
+  }
+
+  .col-no-padding-xs .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .status .col-xs-4 {
+    min-width: 75px;
+  }
+
+  #detector-info {
+    top: 15px; right: 15px;
+  }
+
+  /* Bigger tap targets for touch. */
+  .btn {
+    padding: 10px 14px;
+  }
+
+  .media-list .btn-group .btn {
+    padding: 10px 12px;
+  }
+}
+
+/* Retina support */
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (min-resolution: 1.5dppx),
+    only screen and (min-resolution: 144dpi)
+{
+  .pc-icon {
+    background-image: url('../assets/pc32sw@2x.png');
+    background-size: 32px 32px;
+  }
+
+  .pc-icon:hover {
+    background-image: url('../assets/pc32@2x.png');
+  }
+}
+
+/** Dark mode. Toggled by adding/removing .dark-theme on <html> (see the
+ * inline script in <head> and the #theme-toggle handler in app.js). */
+html.dark-theme body {
+  background: #242424;
+  color: #ddd;
+}
+
+html.dark-theme .pc-icon {
+  background-image: url('../assets/pc32.png');
+}
+
+html.dark-theme .navbar-default {
+  background-color: #2a2a2a;
+  border-color: #1a1a1a;
+}
+
+html.dark-theme .navbar-default .navbar-brand,
+html.dark-theme .navbar-default .navbar-nav > li > a {
+  color: #ccc;
+}
+
+html.dark-theme .navbar-default .navbar-brand:hover,
+html.dark-theme .navbar-default .navbar-nav > li > a:hover,
+html.dark-theme .navbar-default .navbar-nav > li > a:focus {
+  color: #fff;
+}
+
+html.dark-theme .navbar-default .navbar-toggle {
+  border-color: #484848;
+}
+
+html.dark-theme .navbar-default .navbar-toggle .icon-bar {
+  background-color: #ccc;
+}
+
+html.dark-theme .navbar-default .navbar-collapse {
+  border-color: #1a1a1a;
+}
+
+html.dark-theme .panel-default {
+  background-color: #2a2a2a;
+  border-color: #444;
+}
+
+html.dark-theme .panel-default > .panel-heading {
+  background-color: #303030;
+  border-color: #444;
+  color: #ddd;
+}
+
+html.dark-theme #labname {
+  background: transparent;
+  color: #eee;
+}
+
+html.dark-theme .status strong {
+  color: #aaa;
+}
+
+html.dark-theme #labname::-webkit-input-placeholder { color: #888; }
+html.dark-theme #labname::-moz-placeholder { color: #888; }
+html.dark-theme #labname:-ms-input-placeholder { color: #888; }
+
+html.dark-theme .modal-content {
+  background-color: #2b2b2b;
+  color: #ddd;
+  border-color: #444;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, .6);
+}
+
+html.dark-theme .modal-header,
+html.dark-theme .modal-footer {
+  border-color: #444;
+}
+
+html.dark-theme .close {
+  color: #eee;
+  text-shadow: none;
+  opacity: .8;
+}
+
+html.dark-theme .close:hover,
+html.dark-theme .close:focus {
+  color: #fff;
+}
+
+html.dark-theme .dropdown-menu {
+  background-color: #2e2e2e;
+  border-color: #444;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, .5);
+}
+
+html.dark-theme .dropdown-menu > li > a {
+  color: #ddd;
+}
+
+html.dark-theme .dropdown-menu > li > a:hover,
+html.dark-theme .dropdown-menu > li > a:focus {
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+html.dark-theme .dropdown-menu .divider {
+  background-color: #444;
+}
+
+html.dark-theme .list-group-item {
+  background-color: #2a2a2a;
+  border-color: #444;
+  color: #ddd;
+}
+
+html.dark-theme .alert-info {
+  background-color: #1c3a4a;
+  border-color: #235068;
+  color: #cfeeff;
+}
+
+html.dark-theme .alert-success {
+  background-color: #1e3a24;
+  border-color: #2c522f;
+  color: #cdf0d3;
+}
+
+html.dark-theme .alert-info .alert-link,
+html.dark-theme .alert-success .alert-link {
+  color: inherit;
+  text-decoration: underline;
+}
+
+html.dark-theme .nav-tabs {
+  border-color: #444;
+}
+
+html.dark-theme .nav-tabs > li > a {
+  color: #ccc;
+}
+
+html.dark-theme .nav-tabs > li > a:hover {
+  background-color: #303030;
+  border-color: #444;
+}
+
+html.dark-theme .nav-tabs > li.active > a,
+html.dark-theme .nav-tabs > li.active > a:hover,
+html.dark-theme .nav-tabs > li.active > a:focus {
+  background-color: #2a2a2a;
+  border-color: #444 #444 transparent;
+  color: #fff;
+}
+
+html.dark-theme .tab-content {
+  border-color: #444;
+}
+
+html.dark-theme hr {
+  border-color: #444;
+}
+
+html.dark-theme .form-control {
+  background-color: #333;
+  border-color: #555;
+  color: #eee;
+}
+
+html.dark-theme .form-control::-webkit-input-placeholder { color: #888; }
+html.dark-theme .form-control::-moz-placeholder { color: #888; }
+html.dark-theme .form-control:-ms-input-placeholder { color: #888; }
+
+html.dark-theme .table {
+  color: #ddd;
+}
+
+html.dark-theme .table > thead > tr > th,
+html.dark-theme .table > tbody > tr > td {
+  border-color: #444;
+}
+
+html.dark-theme .table > tbody > tr.active > td {
+  background-color: #333;
+}
+
+html.dark-theme .text-muted {
+  color: #999;
+}
+
+html.dark-theme .text-danger {
+  color: #ff8080;
+}
