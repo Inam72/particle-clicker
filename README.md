@@ -21,7 +21,8 @@ data files from loading that way.
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
+See [CONTRIBUTING.md](CONTRIBUTING.md). A summary of the changes in this fork is in
+[CONTRIBUTIONS.md](CONTRIBUTIONS.md).
 
 ## Multiplayer
 

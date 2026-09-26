@@ -82,7 +82,6 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="https://facebook.com/particleclicker"><i class="fa fa-facebook-square"></i> Facebook</a></li>
                 <li><a href="https://twitter.com/particleclicker"><i class="fa fa-twitter"></i> Twitter</a></li>
-                <li><a href="https://plus.google.com/share?url=http%3A%2F%2Fcern.ch%2Fparticle-clicker" target="_blank" title="Share on Google+"><i class="fa fa-google-plus-square"></i> Google+</a></li>
               </ul>
             </li>
           </ul>
@@ -324,8 +323,11 @@
                 Room code: <strong>{{ mc.roomId }}</strong>
                 <span ng-show="mc.waitingForSettings" class="text-muted"> &mdash; waiting for room info&hellip;</span>
               </p>
+              <p class="small text-warning" ng-show="mc.waitingForSettings && mc.slowJoin">
+                Still connecting. Check the room code is right and that the person who created the room still has the game open.
+              </p>
               <p class="small text-muted" ng-hide="mc.waitingForSettings">
-                <span ng-if="mc.goal">Racing to <strong>{{ mc.goal | niceNumber }} {{ mc.statLabel }}</strong>.</span>
+                <span ng-if="mc.goal">First to gain <strong>{{ mc.goal | niceNumber }} {{ mc.statLabel }}</strong> after joining wins.</span>
                 <span ng-if="!mc.goal">No goal set &mdash; comparing {{ mc.statLabel }}.</span>
               </p>
 

@@ -24,7 +24,22 @@ var Multiplayer = (function() {
   var roomId = '';
   var players = {}; // peerId (or 'self') -> { name, value, finishedAt, isSelf }
   var getValue = function() { return 0; };
+  // In a race (goal set), progress is counted from when the player got the
+  // room settings, so an existing save doesn't finish the race instantly.
+  // Without a goal it's a plain leaderboard of each player's total.
+  var baseline = null;
   var onUpdate = function() {};
+
+  var currentValue = function() {
+    var value = getValue();
+    if (!settings.goal) {
+      return value;
+    }
+    if (baseline === null) {
+      baseline = value;
+    }
+    return value - baseline;
+  };
 
   var makeRoomId = function() {
     return Math.random().toString(36).slice(2, 8).toUpperCase();
@@ -34,7 +49,7 @@ var Multiplayer = (function() {
     if (!settings) {
       return;
     }
-    var value = getValue();
+    var value = currentValue();
     var finishedAt = players.self && players.self.finishedAt;
     if (!finishedAt && settings.goal && value >= settings.goal) {
       finishedAt = new Date().getTime() - startTime;
@@ -50,6 +65,7 @@ var Multiplayer = (function() {
     getValue = valueGetter;
     startTime = new Date().getTime();
     players = {};
+    baseline = null;
 
     room = window.__trystero.joinRoom({ appId: APP_ID }, roomId);
 
@@ -66,8 +82,9 @@ var Multiplayer = (function() {
 
     settingsAction = room.makeAction('settings');
     settingsAction.onMessage = function(data) {
-      if (!isHost) {
+      if (!isHost && !settings) {
         settings = data;
+        startTime = new Date().getTime();
         broadcast();
       }
     };

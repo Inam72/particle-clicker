@@ -12,6 +12,9 @@
   var achievements = game.achievements;
   var allObjects = game.allObjects;
   var lastSaved;
+  // Set just before a restart/import reloads the page, so the auto-save
+  // timer can't write the old progress back over the cleared/imported save.
+  var savingDisabled = false;
 
   // Dark mode. The initial class is already applied by the inline script in
   // <head> (to avoid a flash of the wrong theme); this just wires up the
@@ -204,6 +207,9 @@
     lastSaved = new Date().getTime();
     $scope.lastSaved = lastSaved;
     $scope.saveNow = function() {
+      if (savingDisabled) {
+        return;
+      }
       var saveTime = new Date().getTime();
       game.lab.state.time += saveTime - lastSaved;
       game.save();
@@ -214,10 +220,12 @@
       if (window.confirm(
         'Do you really want to restart the game? All progress will be lost.'
       )) {
+        savingDisabled = true;
         ObjectStorage.clear();
         window.location.reload(true);
       }
     };
+    $interval($scope.saveNow, 10000);
     $scope.exportSave = function() {
       $scope.saveNow();
       var data = { saveVersion: ObjectStorage.load('saveVersion') };
@@ -255,6 +263,9 @@
       try {
         data = JSON.parse(reader.result);
       } catch (err) {
+        data = null;
+      }
+      if (!data || typeof data !== 'object' || !data.lab) {
         window.alert('This is not a valid Particle Clicker save file.');
         return;
       }
@@ -263,6 +274,7 @@
       )) {
         return;
       }
+      savingDisabled = true;
       for (var key in data) {
         if (key === 'saveVersion') {
           continue;
@@ -279,8 +291,9 @@
     $scope.lab = lab;
   });
 
-  app.controller('MultiplayerController', ['$scope', function($scope) {
+  app.controller('MultiplayerController', ['$scope', '$timeout', function($scope, $timeout) {
     var self = this;
+    var slowJoinTimer = null;
 
     this.statLabels = {
       reputation: 'Reputation',
@@ -335,10 +348,16 @@
       });
       this.inRoom = true;
       this.roomId = Multiplayer.getRoomId();
+      this.slowJoin = false;
+      slowJoinTimer = $timeout(function() {
+        self.slowJoin = true;
+      }, 20000);
       refresh();
     };
 
     this.leaveRoom = function() {
+      $timeout.cancel(slowJoinTimer);
+      this.slowJoin = false;
       Multiplayer.leave();
       this.inRoom = false;
       this.waitingForSettings = false;

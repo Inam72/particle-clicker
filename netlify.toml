@@ -1,2 +1,9 @@
 [build]
   publish = "."
+
+# The multiplayer library is loaded as an ES module (.mjs); browsers refuse to run
+# modules served with a non-JavaScript MIME type, so pin it explicitly.
+[[headers]]
+  for = "/js/external/*"
+  [headers.values]
+    Content-Type = "text/javascript; charset=utf-8"

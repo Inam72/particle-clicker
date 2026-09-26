@@ -513,3 +513,7 @@ html.dark-theme .text-muted {
 html.dark-theme .text-danger {
   color: #ff8080;
 }
+
+html.dark-theme .text-warning {
+  color: #f0c36d;
+}
