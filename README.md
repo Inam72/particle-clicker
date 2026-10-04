@@ -22,6 +22,64 @@ then visit `http://localhost:8000`. Opening `index.html` directly from disk
 (a `file://` URL) will not work, since the browser blocks the local JSON
 data files from loading that way.
 
+## Host it yourself (for schools and clubs)
+
+You can put your own copy of the game online for free, so your students
+can play it from a link on any computer or phone. There is nothing to
+install, no database and no accounts: the game is a folder of plain web
+files. Pick one of the options below.
+
+### Option 1: GitHub Pages (free, about 5 minutes)
+
+1. Create a free account at [github.com](https://github.com) if you don't
+   have one.
+2. Open this repository and click **Fork** (top right), then
+   **Create fork**. You now have your own copy.
+3. In your copy, go to **Settings → Pages**.
+4. Under **Build and deployment**, set **Source** to
+   **Deploy from a branch**, choose the branch **main** and the folder
+   **/ (root)**, then click **Save**.
+5. Wait a minute or two and refresh the page. Your link appears at the
+   top, in the form `https://<your-username>.github.io/particle-clicker-reloaded/`.
+   Share that link with your students.
+
+### Option 2: Netlify (free)
+
+1. Fork this repository as in Option 1, steps 1-2.
+2. Create a free account at [netlify.com](https://www.netlify.com) and
+   choose **Add new site → Import an existing project → GitHub**.
+3. Pick your fork. Leave the **build command empty** and set the
+   **publish directory** to `.` (the included `netlify.toml` already
+   sets this).
+4. Click **Deploy**. Netlify gives you a link you can share, and you can
+   change its name in the site settings.
+
+### Option 3: Your school's own web server
+
+Download this repository (**Code → Download ZIP**), unzip it, and ask
+your IT team to upload the whole folder to any web server as static
+files. No server-side software is needed. One thing to tell them: files
+ending in `.mjs` must be served as JavaScript (`text/javascript`),
+otherwise multiplayer will not load. Most servers already do this.
+
+### Without the internet
+
+For a single classroom computer with no web hosting, use
+[Running locally](#running-locally) above. The game is playable
+offline; only multiplayer needs an internet connection, and without
+internet the small icons in the menus are not shown.
+
+### Good to know for classrooms
+
+- Each student's progress is saved in their own browser on their own
+  device. Nothing is sent to you or to anyone else.
+- Students can move their progress between devices with
+  **Saved → Export save** and **Import save**.
+- For multiplayer, every player needs to be online at the same time.
+  Some strict school networks block direct peer-to-peer connections; if
+  students can't join a room, try a different network (for example a
+  phone hotspot) or ask your IT team.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). A summary of the changes in this fork is in
