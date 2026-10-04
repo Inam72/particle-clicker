@@ -5,7 +5,7 @@ This file tracks the changes made in this fork of
 (CERN Webfest 2014), compared with the original project's last commit
 (`d6762d5`, March 2023). Add new work to the log at the bottom.
 
-Repository: https://github.com/Inam72/particle-clicker
+Repository: https://github.com/Inam72/particle-clicker-reloaded
 
 ---
 
@@ -129,3 +129,4 @@ Run locally with `python -m http.server 8000` and open `http://localhost:8000`, 
 | 2026-09-06 | Initial import with bug fixes, responsive layout, dark mode, save export/import, upgrade info, research links, detector tiers, P2P multiplayer. |
 | 2026-09-20 | Added `netlify.toml` for static deployment. |
 | 2026-09-26 | Pre-launch review: restored auto-save, fixed luminosity unit, race progress counted from joining, slow-join hint, stricter save import, Netlify module header, removed dead Google+ link, this file. |
+| 2026-10-04 | Renamed to Particle Clicker Reloaded: page title, navbar, About box, README and GitHub links now point to Inam72/particle-clicker-reloaded. Original CERN Webfest credits kept. |

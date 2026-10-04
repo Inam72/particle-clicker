@@ -1,10 +1,13 @@
-# Particle Clicker
+# Particle Clicker Reloaded
 
 An addictive incremental game that teaches players the history of high energy particle physics.
 
-Developed during the 2014 CERN Webfest over a weekend.
+An upgraded version of [Particle Clicker](https://github.com/particle-clicker/particle-clicker),
+originally developed during the 2014 CERN Webfest over a weekend. This version
+adds a phone-friendly layout, dark mode, physics explanations, save
+export/import and peer-to-peer multiplayer (see [CONTRIBUTIONS.md](CONTRIBUTIONS.md)).
 
-Visit [http://cern.ch/particle-clicker](http://cern.ch/particle-clicker) to play the game.
+The original game is at [http://cern.ch/particle-clicker](http://cern.ch/particle-clicker).
 
 ## Running locally
 
